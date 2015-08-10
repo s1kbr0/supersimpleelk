@@ -5,6 +5,7 @@ elasticsearch-1.5.2.tar.gz:
     - name: /opt/
     - if_missing: /opt/elasticsearch-1.5.2
     - source: https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.5.2.tar.gz
+    - source_hash: sha1=ffe2e46ec88f4455323112a556adaaa085669d13
 
 logstash-1.5.0.tar.gz:
   archive.extracted:
@@ -13,7 +14,16 @@ logstash-1.5.0.tar.gz:
     - name: /opt/
     - if_missing: /opt/logstash-1.5.0
     - source: http://download.elastic.co/logstash/logstash/logstash-1.5.0.tar.gz
+    - source_hash: sha1=9729c2d31fddaabdd3d8e94c34a6d1f61d57f94a
 
+kibana-4.4.1-linux-x64.tar.gz:
+  archive.extracted:
+    - archive_format: tar
+    - tar_options: z
+    - name: /opt/
+    - if_missing: /opt/kibana-4.1.1-linux-x64
+    - source: https://download.elastic.co/kibana/kibana/kibana-4.1.1-linux-x64.tar.gz
+    - source_hash: sha1=d43e039adcea43e1808229b9d55f3eaee6a5edb9
 
 /etc/init/logstash.conf:
   file.managed:
@@ -32,7 +42,7 @@ logstash-1.5.0.tar.gz:
   file.managed:
     - source: salt://files/logstash-simple.conf
 
-/opt/kibana-4.0.2-linux-x64/config/kibana.yml:
+/opt/kibana-4.1.1-linux-x64/config/kibana.yml:
   file.managed:
     - source: salt://files/kibana-config
 
@@ -46,13 +56,13 @@ elasticsearch:
     - enable: True
 
 
-/etc/ssl/elk01.staging.example.com_.key:
+/etc/ssl/elk01.example.com_.key:
   file.managed:
-    - source: salt://files/elk01.staging.example.com_.key
+    - source: salt://files/elk01.example.com_.key
 
-/etc/ssl/elk01.staging.example.com_.cert:
+/etc/ssl/elk01.example.com_.cert:
   file.managed:
-    - source: salt://files/elk01.staging.example.com_.cert
+    - source: salt://files/elk01.example.com_.cert
 
 
 /opt/htpasswd:
