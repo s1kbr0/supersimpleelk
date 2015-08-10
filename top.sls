@@ -1,5 +1,5 @@
 base:
   '*':
-    - rsyslog-to-elk
+#    - rsyslog-to-elk
     - openjdk-7-jre-headless
     - elk
